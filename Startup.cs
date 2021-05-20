@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 
 namespace ds3Wiki
 {
@@ -27,7 +28,19 @@ namespace ds3Wiki
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<MainContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<ApplicationContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection")));
+
+            services.AddIdentity<User, IdentityRole>(options => {
+                options.Password.RequiredLength = 3;   // минимальная длина
+                options.Password.RequireNonAlphanumeric = false;   // требуются ли не алфавитно-цифровые символы
+                options.Password.RequireLowercase = false; // требуются ли символы в нижнем регистре
+                options.Password.RequireUppercase = false; // требуются ли символы в верхнем регистре
+                options.Password.RequireDigit = false; // требуются ли цифры
+                options.SignIn.RequireConfirmedAccount = false; //требуются подтверждение email
+            }).AddEntityFrameworkStores<ApplicationContext>();
             services.AddControllersWithViews();
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,6 +60,8 @@ namespace ds3Wiki
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

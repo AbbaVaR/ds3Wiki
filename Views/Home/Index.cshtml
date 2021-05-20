@@ -3,19 +3,30 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    <p> <a asp-controller="Game_info" asp-action="Index"> Game info</a></p>
-    <p></p><a asp-controller="Armors" asp-action="Index"> Armor</a></p>
-    <p> <a asp-controller="Catalysts" asp-action="Index"> Catalyst</a></p>
-    <p> <a asp-controller="Character_characteristic" asp-action="Index"> Character characteristic</a></p>
-    <p> <a asp-controller="Characters" asp-action="Index"> Character</a></p>
-    <p> <a asp-controller="Enemies" asp-action="Index"> Enemy</a></p>
-    <p> <a asp-controller="Improvement_path" asp-action="Index"> Improvement path</a></p>
-    <p> <a asp-controller="Items" asp-action="Index"> Item</a></p>
-    <p> <a asp-controller="Locations" asp-action="Index"> Location</a></p>
-    <p> <a asp-controller="Magics" asp-action="Index"> Magic</a></p>
-    <p> <a asp-controller="Negative_effect" asp-action="Index"> Negative effect</a></p>
-    <p> <a asp-controller="Type_of_magic" asp-action="Index"> Type of magic</a></p>
-    <p> <a asp-controller="Weapons" asp-action="Index"> Weapon</a></p>
+    @if (User.Identity.IsAuthenticated)
+    {
+        @if (User.IsInRole("admin") || User.IsInRole("moderator"))
+        {
+            @if (User.IsInRole("admin"))
+            {
+                <p> <a asp-controller="Roles" asp-action="Index"> Roles</a></p>
+            }
+            <p> <a asp-controller="Users" asp-action="Index"> Users</a></p>
+            <p></p><p>---------------------------------------------------------------------------------</p><p></p>
+        }
+        <p> <a asp-controller="Game_info" asp-action="Index"> Game info</a></p>
+        <p> <a asp-controller="Armors" asp-action="Index"> Armor</a></p>
+        <p> <a asp-controller="Catalysts" asp-action="Index"> Catalyst</a></p>
+        <p> <a asp-controller="Character_characteristic" asp-action="Index"> Character characteristic</a></p>
+        <p> <a asp-controller="Characters" asp-action="Index"> Character</a></p>
+        <p> <a asp-controller="Enemies" asp-action="Index"> Enemy</a></p>
+        <p> <a asp-controller="Improvement_path" asp-action="Index"> Improvement path</a></p>
+        <p> <a asp-controller="Items" asp-action="Index"> Item</a></p>
+        <p> <a asp-controller="Locations" asp-action="Index"> Location</a></p>
+        <p> <a asp-controller="Magics" asp-action="Index"> Magic</a></p>
+        <p> <a asp-controller="Negative_effect" asp-action="Index"> Negative effect</a></p>
+        <p> <a asp-controller="Type_of_magic" asp-action="Index"> Type of magic</a></p>
+        <p> <a asp-controller="Weapons" asp-action="Index"> Weapon</a></p>
+    }
+
 </div>

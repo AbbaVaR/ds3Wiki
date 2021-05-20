@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ds3Wiki.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ds3Wiki.Controllers
 {
+    [Authorize]
     public class CatalystsController : Controller
     {
         private readonly MainContext _context;
@@ -43,6 +45,7 @@ namespace ds3Wiki.Controllers
         }
 
         // GET: Catalysts/Create
+        [Authorize(Roles = "admin, moderator")]
         public IActionResult Create()
         {
             return View();
@@ -53,6 +56,7 @@ namespace ds3Wiki.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin, moderator")]
         public async Task<IActionResult> Create([Bind("Id,Title,Type_of_catalyst,Spell_Buff")] Catalyst catalyst)
         {
             if (ModelState.IsValid)
@@ -65,6 +69,7 @@ namespace ds3Wiki.Controllers
         }
 
         // GET: Catalysts/Edit/5
+        [Authorize(Roles = "admin, moderator")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -85,6 +90,8 @@ namespace ds3Wiki.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin, moderator")]
+
         public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Type_of_catalyst,Spell_Buff")] Catalyst catalyst)
         {
             if (id != catalyst.Id)
@@ -116,6 +123,7 @@ namespace ds3Wiki.Controllers
         }
 
         // GET: Catalysts/Delete/5
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -136,6 +144,7 @@ namespace ds3Wiki.Controllers
         // POST: Catalysts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var catalyst = await _context.Catalysts.FindAsync(id);

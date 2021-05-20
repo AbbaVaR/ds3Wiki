@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ds3Wiki.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ds3Wiki.Controllers
 {
+    [Authorize]
     public class Type_of_magicController : Controller
     {
         private readonly MainContext _context;
@@ -43,6 +45,7 @@ namespace ds3Wiki.Controllers
         }
 
         // GET: Type_of_magic/Create
+        [Authorize(Roles = "admin, moderator")]
         public IActionResult Create()
         {
             return View();
@@ -53,6 +56,7 @@ namespace ds3Wiki.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin, moderator")]
         public async Task<IActionResult> Create([Bind("Id,Title")] Type_of_magic type_of_magic)
         {
             if (ModelState.IsValid)
@@ -65,6 +69,7 @@ namespace ds3Wiki.Controllers
         }
 
         // GET: Type_of_magic/Edit/5
+        [Authorize(Roles = "admin, moderator")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -85,6 +90,7 @@ namespace ds3Wiki.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin, moderator")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Title")] Type_of_magic type_of_magic)
         {
             if (id != type_of_magic.Id)
@@ -116,6 +122,7 @@ namespace ds3Wiki.Controllers
         }
 
         // GET: Type_of_magic/Delete/5
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -136,6 +143,7 @@ namespace ds3Wiki.Controllers
         // POST: Type_of_magic/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var type_of_magic = await _context.Type_Of_Magics.FindAsync(id);

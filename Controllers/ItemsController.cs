@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ds3Wiki.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ds3Wiki.Controllers
 {
+    [Authorize]
     public class ItemsController : Controller
     {
         private readonly MainContext _context;
@@ -43,6 +45,7 @@ namespace ds3Wiki.Controllers
         }
 
         // GET: Items/Create
+        [Authorize(Roles = "admin, moderator")]
         public IActionResult Create()
         {
             return View();
@@ -53,6 +56,7 @@ namespace ds3Wiki.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin, moderator")]
         public async Task<IActionResult> Create([Bind("Id,Title,Consumable,Use_for")] Item item)
         {
             if (ModelState.IsValid)
@@ -65,6 +69,7 @@ namespace ds3Wiki.Controllers
         }
 
         // GET: Items/Edit/5
+        [Authorize(Roles = "admin, moderator")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -85,6 +90,7 @@ namespace ds3Wiki.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin, moderator")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Consumable,Use_for")] Item item)
         {
             if (id != item.Id)
@@ -116,6 +122,7 @@ namespace ds3Wiki.Controllers
         }
 
         // GET: Items/Delete/5
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -136,6 +143,7 @@ namespace ds3Wiki.Controllers
         // POST: Items/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var item = await _context.Items.FindAsync(id);

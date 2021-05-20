@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ds3Wiki.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ds3Wiki.Controllers
 {
+    [Authorize]
     public class Character_characteristicController : Controller
     {
         private readonly MainContext _context;
@@ -43,6 +45,7 @@ namespace ds3Wiki.Controllers
         }
 
         // GET: Character_characteristic/Create
+        [Authorize(Roles = "admin, moderator")]
         public IActionResult Create()
         {
             return View();
@@ -53,6 +56,7 @@ namespace ds3Wiki.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin, moderator")]
         public async Task<IActionResult> Create([Bind("Id,Title,Influence")] Character_characteristic character_characteristic)
         {
             if (ModelState.IsValid)
@@ -65,6 +69,7 @@ namespace ds3Wiki.Controllers
         }
 
         // GET: Character_characteristic/Edit/5
+        [Authorize(Roles = "admin, moderator")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -85,6 +90,8 @@ namespace ds3Wiki.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin, moderator")]
+
         public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Influence")] Character_characteristic character_characteristic)
         {
             if (id != character_characteristic.Id)
@@ -116,6 +123,7 @@ namespace ds3Wiki.Controllers
         }
 
         // GET: Character_characteristic/Delete/5
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -134,6 +142,7 @@ namespace ds3Wiki.Controllers
         }
 
         // POST: Character_characteristic/Delete/5
+        [Authorize(Roles = "admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

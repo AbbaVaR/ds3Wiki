@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ds3Wiki.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ds3Wiki.Controllers
 {
+    [Authorize]
     public class ArmorsController : Controller
     {
         private readonly MainContext _context;
@@ -43,6 +45,7 @@ namespace ds3Wiki.Controllers
         }
 
         // GET: Armors/Create
+        [Authorize(Roles = "admin, moderator")]
         public IActionResult Create()
         {
             return View();
@@ -53,6 +56,7 @@ namespace ds3Wiki.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin, moderator")]
         public async Task<IActionResult> Create([Bind("Id,Title,Physical_protection,Fire_protection,Lightning_protection,Magic_protection")] Armor armor)
         {
             if (ModelState.IsValid)
@@ -65,6 +69,7 @@ namespace ds3Wiki.Controllers
         }
 
         // GET: Armors/Edit/5
+        [Authorize(Roles = "admin, moderator")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -85,6 +90,7 @@ namespace ds3Wiki.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin, moderator")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Physical_protection,Fire_protection,Lightning_protection,Magic_protection")] Armor armor)
         {
             if (id != armor.Id)
@@ -115,7 +121,7 @@ namespace ds3Wiki.Controllers
             return View(armor);
         }
 
-        // GET: Armors/Delete/5
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -134,6 +140,7 @@ namespace ds3Wiki.Controllers
         }
 
         // POST: Armors/Delete/5
+        [Authorize(Roles = "admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

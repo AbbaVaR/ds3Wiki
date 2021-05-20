@@ -23,8 +23,6 @@ D:\Edu\ds3Wiki\bin\Debug\net5.0\refs\Microsoft.AspNetCore.Components.Web.dll
 D:\Edu\ds3Wiki\bin\Debug\net5.0\refs\Microsoft.AspNetCore.Connections.Abstractions.dll
 D:\Edu\ds3Wiki\bin\Debug\net5.0\refs\Microsoft.AspNetCore.CookiePolicy.dll
 D:\Edu\ds3Wiki\bin\Debug\net5.0\refs\Microsoft.AspNetCore.Cors.dll
-D:\Edu\ds3Wiki\bin\Debug\net5.0\refs\Microsoft.AspNetCore.Cryptography.Internal.dll
-D:\Edu\ds3Wiki\bin\Debug\net5.0\refs\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 D:\Edu\ds3Wiki\bin\Debug\net5.0\refs\Microsoft.AspNetCore.DataProtection.Abstractions.dll
 D:\Edu\ds3Wiki\bin\Debug\net5.0\refs\Microsoft.AspNetCore.DataProtection.dll
 D:\Edu\ds3Wiki\bin\Debug\net5.0\refs\Microsoft.AspNetCore.DataProtection.Extensions.dll
@@ -109,8 +107,6 @@ D:\Edu\ds3Wiki\bin\Debug\net5.0\refs\Microsoft.Extensions.FileSystemGlobbing.dll
 D:\Edu\ds3Wiki\bin\Debug\net5.0\refs\Microsoft.Extensions.Hosting.Abstractions.dll
 D:\Edu\ds3Wiki\bin\Debug\net5.0\refs\Microsoft.Extensions.Hosting.dll
 D:\Edu\ds3Wiki\bin\Debug\net5.0\refs\Microsoft.Extensions.Http.dll
-D:\Edu\ds3Wiki\bin\Debug\net5.0\refs\Microsoft.Extensions.Identity.Core.dll
-D:\Edu\ds3Wiki\bin\Debug\net5.0\refs\Microsoft.Extensions.Identity.Stores.dll
 D:\Edu\ds3Wiki\bin\Debug\net5.0\refs\Microsoft.Extensions.Localization.Abstractions.dll
 D:\Edu\ds3Wiki\bin\Debug\net5.0\refs\Microsoft.Extensions.Localization.dll
 D:\Edu\ds3Wiki\bin\Debug\net5.0\refs\Microsoft.Extensions.Logging.Abstractions.dll
@@ -514,3 +510,17 @@ D:\Edu\ds3Wiki\obj\Debug\net5.0\Razor\Views\Weapons\Delete.cshtml.g.cs
 D:\Edu\ds3Wiki\obj\Debug\net5.0\Razor\Views\Weapons\Details.cshtml.g.cs
 D:\Edu\ds3Wiki\obj\Debug\net5.0\Razor\Views\Weapons\Edit.cshtml.g.cs
 D:\Edu\ds3Wiki\obj\Debug\net5.0\Razor\Views\Weapons\Index.cshtml.g.cs
+D:\Edu\ds3Wiki\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+D:\Edu\ds3Wiki\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+D:\Edu\ds3Wiki\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+D:\Edu\ds3Wiki\bin\Debug\net5.0\Microsoft.Extensions.Identity.Core.dll
+D:\Edu\ds3Wiki\bin\Debug\net5.0\Microsoft.Extensions.Identity.Stores.dll
+D:\Edu\ds3Wiki\obj\Debug\net5.0\Razor\Views\Account\Register.cshtml.g.cs
+D:\Edu\ds3Wiki\obj\Debug\net5.0\Razor\Views\Account\Login.cshtml.g.cs
+D:\Edu\ds3Wiki\obj\Debug\net5.0\Razor\Views\Users\Create.cshtml.g.cs
+D:\Edu\ds3Wiki\obj\Debug\net5.0\Razor\Views\Users\Edit.cshtml.g.cs
+D:\Edu\ds3Wiki\obj\Debug\net5.0\Razor\Views\Users\Index.cshtml.g.cs
+D:\Edu\ds3Wiki\obj\Debug\net5.0\Razor\Views\Roles\Create.cshtml.g.cs
+D:\Edu\ds3Wiki\obj\Debug\net5.0\Razor\Views\Roles\Edit.cshtml.g.cs
+D:\Edu\ds3Wiki\obj\Debug\net5.0\Razor\Views\Roles\Index.cshtml.g.cs
+D:\Edu\ds3Wiki\obj\Debug\net5.0\Razor\Views\Roles\UserList.cshtml.g.cs
