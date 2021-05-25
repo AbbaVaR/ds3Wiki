@@ -48,7 +48,7 @@ namespace ds3Wiki.Controllers
         public async Task<IActionResult> Delete(string id)
         {
             IdentityRole role = await _roleManager.FindByIdAsync(id);
-            if (role != null)
+            if (role != null && role !=await _roleManager.FindByNameAsync("admin"))
             {
                 IdentityResult result = await _roleManager.DeleteAsync(role);
             }
@@ -73,7 +73,11 @@ namespace ds3Wiki.Controllers
                     UserRoles = userRoles,
                     AllRoles = allRoles
                 };
-                return View(model);
+                if (user != await _userManager.FindByNameAsync("admin@test.me"))
+                {
+                    return View(model);
+                }
+                return RedirectToAction("UserList");
             }
 
             return NotFound();
@@ -83,20 +87,23 @@ namespace ds3Wiki.Controllers
         {
             // получаем пользователя
             User user = await _userManager.FindByIdAsync(userId);
-            if (user != null)
+            if (user != null )
             {
-                // получем список ролей пользователя
-                var userRoles = await _userManager.GetRolesAsync(user);
-                // получаем все роли
-                var allRoles = _roleManager.Roles.ToList();
-                // получаем список ролей, которые были добавлены
-                var addedRoles = roles.Except(userRoles);
-                // получаем роли, которые были удалены
-                var removedRoles = userRoles.Except(roles);
+                if (user != await _userManager.FindByNameAsync("admin@test.me"))
+                {
+                    // получем список ролей пользователя
+                    var userRoles = await _userManager.GetRolesAsync(user);
+                    // получаем все роли
+                    var allRoles = _roleManager.Roles.ToList();
+                    // получаем список ролей, которые были добавлены
+                    var addedRoles = roles.Except(userRoles);
+                    // получаем роли, которые были удалены
+                    var removedRoles = userRoles.Except(roles);
 
-                await _userManager.AddToRolesAsync(user, addedRoles);
+                    await _userManager.AddToRolesAsync(user, addedRoles);
 
-                await _userManager.RemoveFromRolesAsync(user, removedRoles);
+                    await _userManager.RemoveFromRolesAsync(user, removedRoles);
+                }
 
                 return RedirectToAction("UserList");
             }

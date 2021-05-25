@@ -16,10 +16,12 @@
                 <form asp-action="Delete" asp-route-id="@user.Id" method="post">
                     @if (User.IsInRole("admin"))
                     {
-                        <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@user.Id">Изменить</a>
-                        <button type="submit" class="btn btn-sm btn-danger">
-                            Удалить
-                        </button>
+                        @if (@user.Email != "admin@test.me")
+                        {
+                            <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@user.Id">Изменить</a> 
+                            <button type="submit" class="btn btn-sm btn-danger">Удалить</button>
+                        }
+
                     }
                 </form>
             </td>

@@ -6,6 +6,7 @@ using ds3Wiki.Models;
 using ds3Wiki.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 
+
 namespace ds3Wiki.Controllers
 {   
     [Authorize]
@@ -53,7 +54,12 @@ namespace ds3Wiki.Controllers
                 return NotFound();
             }
             EditUserViewModel model = new EditUserViewModel { Id = user.Id, Email = user.Email };
-            return View(model);
+            if (user != await _userManager.FindByNameAsync("admin@test.me"))
+            {
+                return View(model);
+            }
+            return View("Details");
+
         }
 
         [HttpPost]
@@ -62,7 +68,7 @@ namespace ds3Wiki.Controllers
             if (ModelState.IsValid)
             {
                 User user = await _userManager.FindByIdAsync(model.Id);
-                if (user != null)
+                if (user != null && user != await _userManager.FindByNameAsync("admin@test.me"))
                 {
                     user.Email = model.Email;
                     user.UserName = model.Email;
@@ -88,7 +94,7 @@ namespace ds3Wiki.Controllers
         public async Task<ActionResult> Delete(string id)
         {
             User user = await _userManager.FindByIdAsync(id);
-            if (user != null)
+            if (user != null && user != await _userManager.FindByNameAsync("admin@test.me"))
             {
                 IdentityResult result = await _userManager.DeleteAsync(user);
             }

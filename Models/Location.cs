@@ -11,5 +11,7 @@ namespace ds3Wiki.Models
         public string Title { get; set; }
         public string Bonfire { get; set; }
         public ICollection<Game_info> Games_info { get; set; }
+        public ICollection<Armor> Armors { get; set; }
+
     }
 }

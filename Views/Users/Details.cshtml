@@ -22,7 +22,10 @@
     </dl>
 </div>
 <div>
-    <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@User.FindFirstValue(ClaimTypes.NameIdentifier)">Сменить email</a>
+    @if (@User.Identity.Name != "admin@test.me")
+    {
+        <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@User.FindFirstValue(ClaimTypes.NameIdentifier)">Сменить email</a>
+    }
     <a class="btn btn-sm btn-primary" asp-action="ChangePassword" asp-route-id="@User.FindFirstValue(ClaimTypes.NameIdentifier)">Сменить пароль</a>
     @if (User.IsInRole("admin") || User.IsInRole("moderator"))
     {
