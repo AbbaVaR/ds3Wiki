@@ -7,8 +7,8 @@ using ds3Wiki.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 
 namespace ds3Wiki.Controllers
-{
-    [Authorize(Roles = "admin, moderator")]
+{   
+    [Authorize]
     public class UsersController : Controller
     {
         UserManager<User> _userManager;
@@ -17,10 +17,11 @@ namespace ds3Wiki.Controllers
         {
             _userManager = userManager;
         }
-
+        [Authorize(Roles = "admin, moderator")]
         public IActionResult Index() => View(_userManager.Users.ToList());
-
+        [Authorize(Roles = "admin")]
         public IActionResult Create() => View();
+        public IActionResult Details() => View();
 
         [HttpPost]
         [Authorize(Roles = "admin")]
@@ -44,7 +45,6 @@ namespace ds3Wiki.Controllers
             }
             return View(model);
         }
-
         public async Task<IActionResult> Edit(string id)
         {
             User user = await _userManager.FindByIdAsync(id);
@@ -69,7 +69,7 @@ namespace ds3Wiki.Controllers
                     var result = await _userManager.UpdateAsync(user);
                     if (result.Succeeded)
                     {
-                        return RedirectToAction("Index");
+                        return RedirectToAction("Details");
                     }
                     else
                     {
@@ -93,6 +93,53 @@ namespace ds3Wiki.Controllers
                 IdentityResult result = await _userManager.DeleteAsync(user);
             }
             return RedirectToAction("Index");
+        }
+        public async Task<IActionResult> ChangePassword(string id)
+        {
+            User user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            ChangePasswordViewModel model = new ChangePasswordViewModel { Id = user.Id, Email = user.Email };
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                User user = await _userManager.FindByIdAsync(model.Id);
+                if (user != null)
+                {
+                    var _passwordValidator =
+                        HttpContext.RequestServices.GetService(typeof(IPasswordValidator<User>)) as IPasswordValidator<User>;
+                    var _passwordHasher =
+                        HttpContext.RequestServices.GetService(typeof(IPasswordHasher<User>)) as IPasswordHasher<User>;
+
+                    IdentityResult result =
+                        await _passwordValidator.ValidateAsync(_userManager, user, model.NewPassword);
+                    if (result.Succeeded)
+                    {
+                        user.PasswordHash = _passwordHasher.HashPassword(user, model.NewPassword);
+                        await _userManager.UpdateAsync(user);
+                        return RedirectToAction("Details");
+                    }
+                    else
+                    {
+                        foreach (var error in result.Errors)
+                        {
+                            ModelState.AddModelError(string.Empty, error.Description);
+                        }
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Пользователь не найден");
+                }
+            }
+            return View(model);
         }
     }
 }

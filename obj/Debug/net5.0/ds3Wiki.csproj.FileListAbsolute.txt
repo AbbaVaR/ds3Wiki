@@ -524,3 +524,5 @@ D:\Edu\ds3Wiki\obj\Debug\net5.0\Razor\Views\Roles\Create.cshtml.g.cs
 D:\Edu\ds3Wiki\obj\Debug\net5.0\Razor\Views\Roles\Edit.cshtml.g.cs
 D:\Edu\ds3Wiki\obj\Debug\net5.0\Razor\Views\Roles\Index.cshtml.g.cs
 D:\Edu\ds3Wiki\obj\Debug\net5.0\Razor\Views\Roles\UserList.cshtml.g.cs
+D:\Edu\ds3Wiki\obj\Debug\net5.0\Razor\Views\Users\Details.cshtml.g.cs
+D:\Edu\ds3Wiki\obj\Debug\net5.0\Razor\Views\Users\ChangePassword.cshtml.g.cs

@@ -1,0 +1,32 @@
+﻿@using System.Security.Claims;
+@model ds3Wiki.Models.User
+@{
+    ViewData["Title"] = "Details";
+}
+<div>
+    <h4>Данные аккаунта:</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Email: 
+        </dt>
+        <dd class="col-sm-10">
+            @User.Identity.Name
+        </dd>
+        <dt class="col-sm-2">
+            Роль: 
+        </dt>
+        <dd class="col-sm-10">
+            @User.FindFirstValue(ClaimTypes.Role)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@User.FindFirstValue(ClaimTypes.NameIdentifier)">Сменить email</a>
+    <a class="btn btn-sm btn-primary" asp-action="ChangePassword" asp-route-id="@User.FindFirstValue(ClaimTypes.NameIdentifier)">Сменить пароль</a>
+    @if (User.IsInRole("admin") || User.IsInRole("moderator"))
+    {
+        <a class="btn btn-sm btn-primary" asp-action="Index">Список пользователей</a>
+    }
+
+</div>

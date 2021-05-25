@@ -3,9 +3,11 @@
 @{
     ViewData["Title"] = "Index";
 }
-
 <h1>Index</h1>
-@if (User.IsInRole("admin") || User.IsInRole("moderator"))
+@*@if (User.HasClaim(x => x.Value == "Policy1"))
+{
+}*@
+     @if (User.IsInRole("admin") || User.IsInRole("moderator"))
 {
     <p>
         <a asp-action="Create">Create New</a>
