@@ -29,6 +29,12 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Spell_Buff)
         </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Type_of_magic)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Type_of_magic.Id)
+        </dd class>
     </dl>
     
     <form asp-action="Delete">

@@ -23,7 +23,8 @@ namespace ds3Wiki.Controllers
         // GET: Type_of_magic
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Type_Of_Magics.ToListAsync());
+            var mainContext = _context.Type_Of_Magics.Include(t => t.Character_characteristic);
+            return View(await mainContext.ToListAsync());
         }
 
         // GET: Type_of_magic/Details/5
@@ -35,6 +36,7 @@ namespace ds3Wiki.Controllers
             }
 
             var type_of_magic = await _context.Type_Of_Magics
+                .Include(t => t.Character_characteristic)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (type_of_magic == null)
             {
@@ -45,9 +47,10 @@ namespace ds3Wiki.Controllers
         }
 
         // GET: Type_of_magic/Create
-        [Authorize(Roles = "admin, moderator")]
+        [Authorize(Roles = "admin , moderator")]
         public IActionResult Create()
         {
+            ViewData["Character_characteristicId"] = new SelectList(_context.Character_Characteristics, "Id", "Id");
             return View();
         }
 
@@ -56,8 +59,8 @@ namespace ds3Wiki.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin, moderator")]
-        public async Task<IActionResult> Create([Bind("Id,Title")] Type_of_magic type_of_magic)
+        [Authorize(Roles = "admin , moderator")]
+        public async Task<IActionResult> Create([Bind("Id,Title,Character_characteristicId")] Type_of_magic type_of_magic)
         {
             if (ModelState.IsValid)
             {
@@ -65,11 +68,12 @@ namespace ds3Wiki.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["Character_characteristicId"] = new SelectList(_context.Character_Characteristics, "Id", "Id", type_of_magic.Character_characteristicId);
             return View(type_of_magic);
         }
 
         // GET: Type_of_magic/Edit/5
-        [Authorize(Roles = "admin, moderator")]
+        [Authorize(Roles = "admin , moderator")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -82,6 +86,7 @@ namespace ds3Wiki.Controllers
             {
                 return NotFound();
             }
+            ViewData["Character_characteristicId"] = new SelectList(_context.Character_Characteristics, "Id", "Id", type_of_magic.Character_characteristicId);
             return View(type_of_magic);
         }
 
@@ -90,8 +95,8 @@ namespace ds3Wiki.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin, moderator")]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title")] Type_of_magic type_of_magic)
+        [Authorize(Roles = "admin , moderator")]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Character_characteristicId")] Type_of_magic type_of_magic)
         {
             if (id != type_of_magic.Id)
             {
@@ -118,6 +123,7 @@ namespace ds3Wiki.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["Character_characteristicId"] = new SelectList(_context.Character_Characteristics, "Id", "Id", type_of_magic.Character_characteristicId);
             return View(type_of_magic);
         }
 
@@ -131,6 +137,7 @@ namespace ds3Wiki.Controllers
             }
 
             var type_of_magic = await _context.Type_Of_Magics
+                .Include(t => t.Character_characteristic)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (type_of_magic == null)
             {

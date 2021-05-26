@@ -23,7 +23,8 @@ namespace ds3Wiki.Controllers
         // GET: Armors
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Armors.ToListAsync());
+            var mainContext = _context.Armors.Include(a => a.Character).Include(a => a.Location);
+            return View(await mainContext.ToListAsync());
         }
 
         // GET: Armors/Details/5
@@ -35,6 +36,8 @@ namespace ds3Wiki.Controllers
             }
 
             var armor = await _context.Armors
+                .Include(a => a.Character)
+                .Include(a => a.Location)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (armor == null)
             {
@@ -45,9 +48,11 @@ namespace ds3Wiki.Controllers
         }
 
         // GET: Armors/Create
-        [Authorize(Roles = "admin, moderator")]
+        [Authorize(Roles = "admin , moderator")]
         public IActionResult Create()
         {
+            ViewData["CharacterId"] = new SelectList(_context.Characters, "Id", "Id");
+            ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Id");
             return View();
         }
 
@@ -56,8 +61,8 @@ namespace ds3Wiki.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin, moderator")]
-        public async Task<IActionResult> Create([Bind("Id,Title,Physical_protection,Fire_protection,Lightning_protection,Magic_protection")] Armor armor)
+        [Authorize(Roles = "admin , moderator")]
+        public async Task<IActionResult> Create([Bind("Id,Title,Physical_protection,Fire_protection,Lightning_protection,Magic_protection,LocationId,CharacterId")] Armor armor)
         {
             if (ModelState.IsValid)
             {
@@ -65,11 +70,13 @@ namespace ds3Wiki.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CharacterId"] = new SelectList(_context.Characters, "Id", "Id", armor.CharacterId);
+            ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Id", armor.LocationId);
             return View(armor);
         }
 
         // GET: Armors/Edit/5
-        [Authorize(Roles = "admin, moderator")]
+        [Authorize(Roles = "admin , moderator")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -82,6 +89,8 @@ namespace ds3Wiki.Controllers
             {
                 return NotFound();
             }
+            ViewData["CharacterId"] = new SelectList(_context.Characters, "Id", "Id", armor.CharacterId);
+            ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Id", armor.LocationId);
             return View(armor);
         }
 
@@ -90,8 +99,8 @@ namespace ds3Wiki.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin, moderator")]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Physical_protection,Fire_protection,Lightning_protection,Magic_protection")] Armor armor)
+        [Authorize(Roles = "admin , moderator")]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Physical_protection,Fire_protection,Lightning_protection,Magic_protection,LocationId,CharacterId")] Armor armor)
         {
             if (id != armor.Id)
             {
@@ -118,9 +127,12 @@ namespace ds3Wiki.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CharacterId"] = new SelectList(_context.Characters, "Id", "Id", armor.CharacterId);
+            ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Id", armor.LocationId);
             return View(armor);
         }
 
+        // GET: Armors/Delete/5
         [Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete(int? id)
         {
@@ -130,6 +142,8 @@ namespace ds3Wiki.Controllers
             }
 
             var armor = await _context.Armors
+                .Include(a => a.Character)
+                .Include(a => a.Location)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (armor == null)
             {
@@ -140,9 +154,9 @@ namespace ds3Wiki.Controllers
         }
 
         // POST: Armors/Delete/5
-        [Authorize(Roles = "admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var armor = await _context.Armors.FindAsync(id);

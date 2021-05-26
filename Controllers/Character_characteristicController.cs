@@ -45,7 +45,7 @@ namespace ds3Wiki.Controllers
         }
 
         // GET: Character_characteristic/Create
-        [Authorize(Roles = "admin, moderator")]
+        [Authorize(Roles = "admin , moderator")]
         public IActionResult Create()
         {
             return View();
@@ -56,7 +56,7 @@ namespace ds3Wiki.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin, moderator")]
+        [Authorize(Roles = "admin , moderator")]
         public async Task<IActionResult> Create([Bind("Id,Title,Influence")] Character_characteristic character_characteristic)
         {
             if (ModelState.IsValid)
@@ -69,7 +69,7 @@ namespace ds3Wiki.Controllers
         }
 
         // GET: Character_characteristic/Edit/5
-        [Authorize(Roles = "admin, moderator")]
+        [Authorize(Roles = "admin , moderator")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -90,8 +90,7 @@ namespace ds3Wiki.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin, moderator")]
-
+        [Authorize(Roles = "admin , moderator")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Influence")] Character_characteristic character_characteristic)
         {
             if (id != character_characteristic.Id)
@@ -142,9 +141,9 @@ namespace ds3Wiki.Controllers
         }
 
         // POST: Character_characteristic/Delete/5
-        [Authorize(Roles = "admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var character_characteristic = await _context.Character_Characteristics.FindAsync(id);

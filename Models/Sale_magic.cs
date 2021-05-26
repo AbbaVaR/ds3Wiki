@@ -8,7 +8,9 @@ namespace ds3Wiki.Models
     public class Sale_magic
     {
         public int Id { get; set; }
-        public ICollection<Character> Charters { get; set; }
-        public ICollection<Magic> Magics { get; set; }
+        public int CharacterId { get; set; }
+        public Character Character { get; set; }
+        public int MagicId { get; set; }
+        public Magic Magic { get; set; }
     }
 }

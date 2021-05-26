@@ -12,5 +12,7 @@ namespace ds3Wiki.Models
         public string Types { get; set; }
         public int HP { get; set; }
         public int Received_money { get; set; }
+        public ICollection<NPC_location> NPC_Locations { get; set; }
+
     }
 }

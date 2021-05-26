@@ -45,7 +45,7 @@ namespace ds3Wiki.Controllers
         }
 
         // GET: Improvement_path/Create
-        [Authorize(Roles = "admin, moderator")]
+        [Authorize(Roles = "admin , moderator")]
         public IActionResult Create()
         {
             return View();
@@ -56,7 +56,7 @@ namespace ds3Wiki.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin, moderator")]
+        [Authorize(Roles = "admin , moderator")]
         public async Task<IActionResult> Create([Bind("Id,Gem_name,Advantages,Disadvantage")] Improvement_path improvement_path)
         {
             if (ModelState.IsValid)
@@ -69,7 +69,7 @@ namespace ds3Wiki.Controllers
         }
 
         // GET: Improvement_path/Edit/5
-        [Authorize(Roles = "admin, moderator")]
+        [Authorize(Roles = "admin , moderator")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -90,7 +90,7 @@ namespace ds3Wiki.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin, moderator")]
+        [Authorize(Roles = "admin , moderator")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Gem_name,Advantages,Disadvantage")] Improvement_path improvement_path)
         {
             if (id != improvement_path.Id)

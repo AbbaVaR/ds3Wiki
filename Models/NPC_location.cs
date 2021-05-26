@@ -8,8 +8,11 @@ namespace ds3Wiki.Models
     public class NPC_location
     {
         public int Id { get; set; }
-        public ICollection<Location> Location { get; set; }
-        public ICollection<Enemy> Enemies { get; set; }
-        public ICollection<Character> Characters { get; set; }
+        public int LocationId { get; set; }
+        public Location Location { get; set; }
+        public int EnemyId { get; set; }
+        public Enemy Enemy { get; set; }
+        public int CharacterId { get; set; }
+        public Character Character { get; set; }
     }
 }

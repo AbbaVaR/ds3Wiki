@@ -19,6 +19,11 @@
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Type_of_magicId" class="control-label"></label>
+                <select asp-for="Type_of_magicId" class="form-control" asp-items="ViewBag.Type_of_magicId"></select>
+                <span asp-validation-for="Type_of_magicId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Concentration_costs" class="control-label"></label>
                 <input asp-for="Concentration_costs" class="form-control" />
                 <span asp-validation-for="Concentration_costs" class="text-danger"></span>

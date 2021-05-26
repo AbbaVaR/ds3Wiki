@@ -23,7 +23,8 @@ namespace ds3Wiki.Controllers
         // GET: Catalysts
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Catalysts.ToListAsync());
+            var mainContext = _context.Catalysts.Include(c => c.Type_of_magic);
+            return View(await mainContext.ToListAsync());
         }
 
         // GET: Catalysts/Details/5
@@ -35,6 +36,7 @@ namespace ds3Wiki.Controllers
             }
 
             var catalyst = await _context.Catalysts
+                .Include(c => c.Type_of_magic)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (catalyst == null)
             {
@@ -45,9 +47,10 @@ namespace ds3Wiki.Controllers
         }
 
         // GET: Catalysts/Create
-        [Authorize(Roles = "admin, moderator")]
+        [Authorize(Roles = "admin , moderator")]
         public IActionResult Create()
         {
+            ViewData["Type_of_magicId"] = new SelectList(_context.Type_Of_Magics, "Id", "Id");
             return View();
         }
 
@@ -56,8 +59,8 @@ namespace ds3Wiki.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin, moderator")]
-        public async Task<IActionResult> Create([Bind("Id,Title,Type_of_catalyst,Spell_Buff")] Catalyst catalyst)
+        [Authorize(Roles = "admin , moderator")]
+        public async Task<IActionResult> Create([Bind("Id,Title,Type_of_catalyst,Spell_Buff,Type_of_magicId")] Catalyst catalyst)
         {
             if (ModelState.IsValid)
             {
@@ -65,11 +68,12 @@ namespace ds3Wiki.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["Type_of_magicId"] = new SelectList(_context.Type_Of_Magics, "Id", "Id", catalyst.Type_of_magicId);
             return View(catalyst);
         }
 
         // GET: Catalysts/Edit/5
-        [Authorize(Roles = "admin, moderator")]
+        [Authorize(Roles = "admin , moderator")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -82,6 +86,7 @@ namespace ds3Wiki.Controllers
             {
                 return NotFound();
             }
+            ViewData["Type_of_magicId"] = new SelectList(_context.Type_Of_Magics, "Id", "Id", catalyst.Type_of_magicId);
             return View(catalyst);
         }
 
@@ -90,9 +95,8 @@ namespace ds3Wiki.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin, moderator")]
-
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Type_of_catalyst,Spell_Buff")] Catalyst catalyst)
+        [Authorize(Roles = "admin , moderator")]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Type_of_catalyst,Spell_Buff,Type_of_magicId")] Catalyst catalyst)
         {
             if (id != catalyst.Id)
             {
@@ -119,6 +123,7 @@ namespace ds3Wiki.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["Type_of_magicId"] = new SelectList(_context.Type_Of_Magics, "Id", "Id", catalyst.Type_of_magicId);
             return View(catalyst);
         }
 
@@ -132,6 +137,7 @@ namespace ds3Wiki.Controllers
             }
 
             var catalyst = await _context.Catalysts
+                .Include(c => c.Type_of_magic)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (catalyst == null)
             {

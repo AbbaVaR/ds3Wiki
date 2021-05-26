@@ -9,6 +9,9 @@ namespace ds3Wiki.Models
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public ICollection<Character_characteristic> Characteristics { get; set; }
+        public int Character_characteristicId { get; set; }
+        public Character_characteristic Character_characteristic { get; set; }
+        public ICollection<Catalyst> Catalysts { get; set; }
+        public ICollection<Magic> Magics { get; set; }
     }
 }

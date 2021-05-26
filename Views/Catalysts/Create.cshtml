@@ -28,6 +28,10 @@
                 <span asp-validation-for="Spell_Buff" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Type_of_magicId" class="control-label"></label>
+                <select asp-for="Type_of_magicId" class ="form-control" asp-items="ViewBag.Type_of_magicId"></select>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>

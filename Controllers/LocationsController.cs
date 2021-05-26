@@ -23,7 +23,8 @@ namespace ds3Wiki.Controllers
         // GET: Locations
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Locations.ToListAsync());
+            var mainContext = _context.Locations.Include(l => l.Game_Info);
+            return View(await mainContext.ToListAsync());
         }
 
         // GET: Locations/Details/5
@@ -35,6 +36,7 @@ namespace ds3Wiki.Controllers
             }
 
             var location = await _context.Locations
+                .Include(l => l.Game_Info)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (location == null)
             {
@@ -45,9 +47,10 @@ namespace ds3Wiki.Controllers
         }
 
         // GET: Locations/Create
-        [Authorize(Roles = "admin, moderator")]
+        [Authorize(Roles = "admin , moderator")]
         public IActionResult Create()
         {
+            ViewData["Game_InfoId"] = new SelectList(_context.Games_Info, "Id", "Id");
             return View();
         }
 
@@ -56,8 +59,8 @@ namespace ds3Wiki.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin, moderator")]
-        public async Task<IActionResult> Create([Bind("Id,Title,Bonfire")] Location location)
+        [Authorize(Roles = "admin , moderator")]
+        public async Task<IActionResult> Create([Bind("Id,Title,Bonfire,Game_InfoId")] Location location)
         {
             if (ModelState.IsValid)
             {
@@ -65,11 +68,12 @@ namespace ds3Wiki.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["Game_InfoId"] = new SelectList(_context.Games_Info, "Id", "Id", location.Game_InfoId);
             return View(location);
         }
 
         // GET: Locations/Edit/5
-        [Authorize(Roles = "admin, moderator")]
+        [Authorize(Roles = "admin , moderator")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -82,6 +86,7 @@ namespace ds3Wiki.Controllers
             {
                 return NotFound();
             }
+            ViewData["Game_InfoId"] = new SelectList(_context.Games_Info, "Id", "Id", location.Game_InfoId);
             return View(location);
         }
 
@@ -90,8 +95,8 @@ namespace ds3Wiki.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin, moderator")]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Bonfire")] Location location)
+        [Authorize(Roles = "admin , moderator")]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Bonfire,Game_InfoId")] Location location)
         {
             if (id != location.Id)
             {
@@ -118,6 +123,7 @@ namespace ds3Wiki.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["Game_InfoId"] = new SelectList(_context.Games_Info, "Id", "Id", location.Game_InfoId);
             return View(location);
         }
 
@@ -131,6 +137,7 @@ namespace ds3Wiki.Controllers
             }
 
             var location = await _context.Locations
+                .Include(l => l.Game_Info)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (location == null)
             {

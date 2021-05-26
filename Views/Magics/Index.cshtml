@@ -1,21 +1,22 @@
 ﻿@model IEnumerable<ds3Wiki.Models.Magic>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Magics";
 }
 
-<h1>Index</h1>
-@if (User.IsInRole("admin") || User.IsInRole("moderator"))
-{
-    <p>
-        <a asp-action="Create">Create New</a>
-    </p>
-}
+<h1>Magics</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
 <table class="table">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type_of_magic)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Concentration_costs)
@@ -27,30 +28,32 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Concentration_costs)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Occupied_cells)
-                </td>
-                <td>
-                    @if (User.IsInRole("admin") || User.IsInRole("moderator"))
-                    {
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                    }
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a>
-                    @if (User.IsInRole("admin"))
-                    {
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                    }
-                </td>
-            </tr>
-        }
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type_of_magic.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Concentration_costs)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Occupied_cells)
+            </td>
+            <td>
+                @if (User.IsInRole("admin") || User.IsInRole("moderator"))
+                {
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                }
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                @if (User.IsInRole("admin"))
+                {
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                }
+            </td>
+        </tr>
+}
     </tbody>
 </table>

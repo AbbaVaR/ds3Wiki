@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace ds3Wiki.Controllers
 {
+    [Authorize]
     public class Game_infoController : Controller
     {
         private readonly MainContext _context;
@@ -44,7 +45,7 @@ namespace ds3Wiki.Controllers
         }
 
         // GET: Game_info/Create
-        [Authorize(Roles = "admin, moderator")]
+        [Authorize(Roles = "admin , moderator")]
         public IActionResult Create()
         {
             return View();
@@ -55,7 +56,7 @@ namespace ds3Wiki.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin, moderator")]
+        [Authorize(Roles = "admin , moderator")]
         public async Task<IActionResult> Create([Bind("Id,Name_of_game,Developer,Genre")] Game_info game_info)
         {
             if (ModelState.IsValid)
@@ -68,7 +69,7 @@ namespace ds3Wiki.Controllers
         }
 
         // GET: Game_info/Edit/5
-        [Authorize(Roles = "admin, moderator")]
+        [Authorize(Roles = "admin , moderator")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -89,7 +90,7 @@ namespace ds3Wiki.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin, moderator")]
+        [Authorize(Roles = "admin , moderator")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name_of_game,Developer,Genre")] Game_info game_info)
         {
             if (id != game_info.Id)

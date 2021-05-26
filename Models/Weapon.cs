@@ -13,10 +13,11 @@ namespace ds3Wiki.Models
         public int Damage { get; set; }
         public int Distance { get; set; }
         public string Support_for_improvement { get; set; }
-        public ICollection<Character_characteristic> Characteristics { get; set; }
-        public ICollection<Negative_effect> Effects { get; set; }
-        public ICollection<Location> Locations { get; set; }
-        public ICollection<Character> Characters { get; set; }
-
+        public int LocationId { get; set; }
+        public Location Location { get; set; }
+        public int CharacterId { get; set; }
+        public Character Character { get; set; }
+        public int Character_characteristicId{ get; set; }
+        public Character_characteristic Character_characteristic { get; set; }
     }
 }

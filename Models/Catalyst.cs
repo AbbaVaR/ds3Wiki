@@ -8,6 +8,7 @@ namespace ds3Wiki.Models
         public string Title { get; set; }
         public string Type_of_catalyst { get; set; }
         public int Spell_Buff { get; set; }
-        public ICollection<Type_of_magic> Types_of_magic { get; set; }
+        public int Type_of_magicId { get; set; }
+        public Type_of_magic Type_of_magic { get; set; }
     }
 }

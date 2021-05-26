@@ -10,7 +10,9 @@ namespace ds3Wiki.Models
         public int Fire_protection { get; set; }
         public int Lightning_protection { get; set; }
         public int Magic_protection { get; set; }
-        public ICollection<Location> Locations { get; set; }
-        public ICollection<Character> Characters { get; set; }
+        public int LocationId { get; set; }
+        public Location Location { get; set; }
+        public int CharacterId { get; set; }
+        public Character Character { get; set; }
     }
 }

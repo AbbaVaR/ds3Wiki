@@ -23,7 +23,8 @@ namespace ds3Wiki.Controllers
         // GET: Weapons
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Weapons.ToListAsync());
+            var mainContext = _context.Weapons.Include(w => w.Character).Include(w => w.Character_characteristic).Include(w => w.Location);
+            return View(await mainContext.ToListAsync());
         }
 
         // GET: Weapons/Details/5
@@ -35,6 +36,9 @@ namespace ds3Wiki.Controllers
             }
 
             var weapon = await _context.Weapons
+                .Include(w => w.Character)
+                .Include(w => w.Character_characteristic)
+                .Include(w => w.Location)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (weapon == null)
             {
@@ -45,9 +49,12 @@ namespace ds3Wiki.Controllers
         }
 
         // GET: Weapons/Create
-        [Authorize(Roles = "admin, moderator")]
+        [Authorize(Roles = "admin , moderator")]
         public IActionResult Create()
         {
+            ViewData["CharacterId"] = new SelectList(_context.Characters, "Id", "Id");
+            ViewData["Character_characteristicId"] = new SelectList(_context.Character_Characteristics, "Id", "Id");
+            ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Id");
             return View();
         }
 
@@ -56,8 +63,8 @@ namespace ds3Wiki.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin, moderator")]
-        public async Task<IActionResult> Create([Bind("Id,Title,Types,Damage,Distance,Support_for_improvement")] Weapon weapon)
+        [Authorize(Roles = "admin , moderator")]
+        public async Task<IActionResult> Create([Bind("Id,Title,Types,Damage,Distance,Support_for_improvement,LocationId,CharacterId,Character_characteristicId")] Weapon weapon)
         {
             if (ModelState.IsValid)
             {
@@ -65,11 +72,14 @@ namespace ds3Wiki.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CharacterId"] = new SelectList(_context.Characters, "Id", "Id", weapon.CharacterId);
+            ViewData["Character_characteristicId"] = new SelectList(_context.Character_Characteristics, "Id", "Id", weapon.Character_characteristicId);
+            ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Id", weapon.LocationId);
             return View(weapon);
         }
 
         // GET: Weapons/Edit/5
-        [Authorize(Roles = "admin, moderator")]
+        [Authorize(Roles = "admin , moderator")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -82,6 +92,9 @@ namespace ds3Wiki.Controllers
             {
                 return NotFound();
             }
+            ViewData["CharacterId"] = new SelectList(_context.Characters, "Id", "Id", weapon.CharacterId);
+            ViewData["Character_characteristicId"] = new SelectList(_context.Character_Characteristics, "Id", "Id", weapon.Character_characteristicId);
+            ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Id", weapon.LocationId);
             return View(weapon);
         }
 
@@ -90,8 +103,8 @@ namespace ds3Wiki.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin, moderator")]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Types,Damage,Distance,Support_for_improvement")] Weapon weapon)
+        [Authorize(Roles = "admin , moderator")]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Types,Damage,Distance,Support_for_improvement,LocationId,CharacterId,Character_characteristicId")] Weapon weapon)
         {
             if (id != weapon.Id)
             {
@@ -118,6 +131,9 @@ namespace ds3Wiki.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CharacterId"] = new SelectList(_context.Characters, "Id", "Id", weapon.CharacterId);
+            ViewData["Character_characteristicId"] = new SelectList(_context.Character_Characteristics, "Id", "Id", weapon.Character_characteristicId);
+            ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Id", weapon.LocationId);
             return View(weapon);
         }
 
@@ -131,6 +147,9 @@ namespace ds3Wiki.Controllers
             }
 
             var weapon = await _context.Weapons
+                .Include(w => w.Character)
+                .Include(w => w.Character_characteristic)
+                .Include(w => w.Location)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (weapon == null)
             {

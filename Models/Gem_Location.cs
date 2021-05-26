@@ -8,7 +8,9 @@ namespace ds3Wiki.Models
     public class Gem_Location
     {
         public int Id { get; set; }
-        public ICollection<Improvement_path> Gems { get; set; }
-        public ICollection<Location> Locations { get; set; }
+        public int Improvement_pathId { get; set; }
+        public Improvement_path Improvement_path { get; set; }
+        public int LocationId { get; set; }
+        public Location Location { get; set; }
     }
 }

@@ -11,5 +11,7 @@ namespace ds3Wiki.Models
         public string Gem_name { get; set; }
         public string Advantages { get; set; }
         public string Disadvantage { get; set; }
+        public ICollection<Gem_Location> Gem_Locations { get; set; }
+
     }
 }
