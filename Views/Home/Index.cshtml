@@ -2,7 +2,7 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
+<div>
     @if (User.Identity.IsAuthenticated)
     {
         @if (User.IsInRole("admin") || User.IsInRole("moderator"))
@@ -14,19 +14,158 @@
             <p> <a asp-controller="Users" asp-action="Index"> Users</a></p>
             <p></p><p>---------------------------------------------------------------------------------</p><p></p>
         }
-        <p> <a asp-controller="Game_info" asp-action="Index"> Game info</a></p>
-        <p> <a asp-controller="Armors" asp-action="Index"> Armor</a></p>
-        <p> <a asp-controller="Catalysts" asp-action="Index"> Catalyst</a></p>
-        <p> <a asp-controller="Character_characteristic" asp-action="Index"> Character characteristic</a></p>
-        <p> <a asp-controller="Characters" asp-action="Index"> Character</a></p>
-        <p> <a asp-controller="Enemies" asp-action="Index"> Enemy</a></p>
-        <p> <a asp-controller="Improvement_path" asp-action="Index"> Improvement path</a></p>
-        <p> <a asp-controller="Items" asp-action="Index"> Item</a></p>
-        <p> <a asp-controller="Locations" asp-action="Index"> Location</a></p>
-        <p> <a asp-controller="Magics" asp-action="Index"> Magic</a></p>
-        <p> <a asp-controller="Negative_effect" asp-action="Index"> Negative effect</a></p>
-        <p> <a asp-controller="Type_of_magic" asp-action="Index"> Type of magic</a></p>
-        <p> <a asp-controller="Weapons" asp-action="Index"> Weapon</a></p>
+        <!--   <h1>Dark souls III - Wiki</h1>
+           <table class="table">
+               <tr>
+                   <th colspan="2">Общая информация:</th>
+               </tr>
+               <tr>
+                   <td>
+                       <a asp-controller="Game_info" asp-action="Index"> Об игре</a>
+                   </td>
+                   <td>
+                       <a asp-controller="Locations" asp-action="Index"> Локации</a>
+                   </td>
+               </tr>
+           </table>
+           <table class="table">
+               <tr>
+                   <td colspan="4"></td>
+               </tr>
+               <tr>
+                   <td colspan="4"> Неигровые персонажи:</td>
+               </tr>
+               <tr>
+                   <td colspan="4"></td>
+               </tr>
+               <tr>
+                   <td>
+                       <a asp-controller="Characters" asp-action="Index"> Персонажи</a>
+                   </td>
+                   <td colspan="2">
+                       <a asp-controller="Enemies" asp-action="Index"> Противники</a>
+                   </td>
+                   <td>
+                       <a asp-controller="NPC_location" asp-action="Index"> Местонахождение</a>
+                   </td>
+               </tr>
+               <tr>
+                   <td colspan="4"></td>
+               </tr>
+               <tr>
+                   <td colspan="4">Снаряжение:</td>
+               </tr>
+               <tr>
+                   <td colspan="4"></td>
+               </tr>
+               <tr>
+                   <td colspan="2">
+                       <a asp-controller="Armors" asp-action="Index"> Броня</a>
+                   </td>
+                   <td colspan="2">
+                       <a asp-controller="Weapons" asp-action="Index"> Оружие</a>
+                   </td>
+               </tr>
+               <tr>
+                   <td colspan="4"></td>
+               </tr>
+               <tr>
+                   <td colspan="4">Магия:</td>
+               </tr>
+               <tr>
+                   <td colspan="4"></td>
+               </tr>
+               <tr>
+                   <td>
+                       <a asp-controller="Type_of_magic" asp-action="Index"> Типы магии</a>
+                   </td>
+                   <td>
+                       <a asp-controller="Magics" asp-action="Index"> Заклинания</a>
+                   </td>
+                   <td>
+                       <a asp-controller="Catalysts" asp-action="Index"> Катализаторы</a>
+                   </td>
+                   <td>
+                       <a asp-controller="Sale_magic" asp-action="Index"> Покупка заклинаний</a>
+                   </td>
+               </tr>
+               <tr>
+                   <td colspan="4"></td>
+               </tr>
+               <tr>
+                   <td colspan="4">Улучшения:</td>
+               </tr>
+               <tr>
+                   <td colspan="4"></td>
+               </tr>
+               <tr>
+                   <td>
+                       <a asp-controller="Character_characteristic" asp-action="Index"> Характеристики персонажа</a>
+                   </td>
+                   <td colspan="2">
+                       <a asp-controller="Improvement_path" asp-action="Index"> Пути улучшения</a>
+                   </td>
+                   <td>
+                       <a asp-controller="Gem_Location" asp-action="Index"> Местонахождение самоцветов</a>
+                   </td>
+               </tr>
+
+
+           </table>-->
+
+        <h4>Dark souls III - Wiki</h4>
+        <!--<dl class="row">
+            <dt class="col-sm-2">
+                Общая информация:
+            </dt>
+            <dd class="col-6 col-sm-10">
+                <a asp-controller="Game_info" asp-action="Index"> Об игре </a>
+                <a asp-controller="Locations" asp-action="Index"> Локации </a>
+            </dd>
+            <dt class="col-sm-2">
+                Неигровые персонажи:
+            </dt>
+            <dd class="col-sm-10">
+                <a asp-controller="Characters" asp-action="Index"> Союзники </a>
+                <a asp-controller="Enemies" asp-action="Index"> Противники </a>
+                <a asp-controller="NPC_location" asp-action="Index"> Местонахождение</a>
+            </dd>
+            <dt class="col-sm-2">
+                Снаряжение:
+            </dt>
+            <dd class="col-sm-10">
+                <a asp-controller="Armors" asp-action="Index"> Броня </a>
+                <a asp-controller="Weapons" asp-action="Index"> Оружие </a>
+            </dd>
+            <dt class="col-sm-2">
+                Магия:
+            </dt>
+            <dd class="col-sm-10">
+                <a asp-controller="Type_of_magic" asp-action="Index"> Типы магии </a>
+                <a asp-controller="Magics" asp-action="Index"> Заклинания </a>
+                <a asp-controller="Catalysts" asp-action="Index"> Катализаторы </a>
+                <a asp-controller="Sale_magic" asp-action="Index"> Покупка заклинаний</a>
+            </dd>
+
+        </dl>-->
+
+       
+        <div class="container">
+            <div class="row g-2">
+                <div class="col-6">
+                    <div class="p-3 border bg-light">Custom column padding</div>
+                </div>
+                <div class="col-6">
+                    <div class="p-3 border bg-light">Custom column padding</div>
+                </div>
+                <div class="col-6">
+                    <div class="p-3 border bg-light">Custom column padding</div>
+                </div>
+                <div class="col-6">
+                    <div class="p-3 border bg-light">Custom column padding</div>
+                </div>
+            </div>
+        </div>
     }
     else
     {
