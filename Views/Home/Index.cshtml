@@ -1,175 +1,124 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
-<div>
-    @if (User.Identity.IsAuthenticated)
-    {
-        @if (User.IsInRole("admin") || User.IsInRole("moderator"))
+<div class="text-center">
+    <div class="text-center">
+        <img src="~/img/logo.png" class="img-fluid">
+        <h1 class="text-secondary display-4">wiki</h1>
+    </div>
+    <div>
+        @if (User.Identity.IsAuthenticated)
         {
-            @if (User.IsInRole("admin"))
-            {
-                <p> <a asp-controller="Roles" asp-action="Index"> Roles</a></p>
-            }
-            <p> <a asp-controller="Users" asp-action="Index"> Users</a></p>
-            <p></p><p>---------------------------------------------------------------------------------</p><p></p>
-        }
-        <!--   <h1>Dark souls III - Wiki</h1>
-           <table class="table">
-               <tr>
-                   <th colspan="2">Общая информация:</th>
-               </tr>
-               <tr>
-                   <td>
-                       <a asp-controller="Game_info" asp-action="Index"> Об игре</a>
-                   </td>
-                   <td>
-                       <a asp-controller="Locations" asp-action="Index"> Локации</a>
-                   </td>
-               </tr>
-           </table>
-           <table class="table">
-               <tr>
-                   <td colspan="4"></td>
-               </tr>
-               <tr>
-                   <td colspan="4"> Неигровые персонажи:</td>
-               </tr>
-               <tr>
-                   <td colspan="4"></td>
-               </tr>
-               <tr>
-                   <td>
-                       <a asp-controller="Characters" asp-action="Index"> Персонажи</a>
-                   </td>
-                   <td colspan="2">
-                       <a asp-controller="Enemies" asp-action="Index"> Противники</a>
-                   </td>
-                   <td>
-                       <a asp-controller="NPC_location" asp-action="Index"> Местонахождение</a>
-                   </td>
-               </tr>
-               <tr>
-                   <td colspan="4"></td>
-               </tr>
-               <tr>
-                   <td colspan="4">Снаряжение:</td>
-               </tr>
-               <tr>
-                   <td colspan="4"></td>
-               </tr>
-               <tr>
-                   <td colspan="2">
-                       <a asp-controller="Armors" asp-action="Index"> Броня</a>
-                   </td>
-                   <td colspan="2">
-                       <a asp-controller="Weapons" asp-action="Index"> Оружие</a>
-                   </td>
-               </tr>
-               <tr>
-                   <td colspan="4"></td>
-               </tr>
-               <tr>
-                   <td colspan="4">Магия:</td>
-               </tr>
-               <tr>
-                   <td colspan="4"></td>
-               </tr>
-               <tr>
-                   <td>
-                       <a asp-controller="Type_of_magic" asp-action="Index"> Типы магии</a>
-                   </td>
-                   <td>
-                       <a asp-controller="Magics" asp-action="Index"> Заклинания</a>
-                   </td>
-                   <td>
-                       <a asp-controller="Catalysts" asp-action="Index"> Катализаторы</a>
-                   </td>
-                   <td>
-                       <a asp-controller="Sale_magic" asp-action="Index"> Покупка заклинаний</a>
-                   </td>
-               </tr>
-               <tr>
-                   <td colspan="4"></td>
-               </tr>
-               <tr>
-                   <td colspan="4">Улучшения:</td>
-               </tr>
-               <tr>
-                   <td colspan="4"></td>
-               </tr>
-               <tr>
-                   <td>
-                       <a asp-controller="Character_characteristic" asp-action="Index"> Характеристики персонажа</a>
-                   </td>
-                   <td colspan="2">
-                       <a asp-controller="Improvement_path" asp-action="Index"> Пути улучшения</a>
-                   </td>
-                   <td>
-                       <a asp-controller="Gem_Location" asp-action="Index"> Местонахождение самоцветов</a>
-                   </td>
-               </tr>
+            <div class="card" style="width: 60%;">
+                <dl class="row">
+                    <dt class="col-sm-3">Общая информация:</dt>
+                    <dd class="col-sm-9">
+                        <p><a asp-controller="Game_info" asp-action="Index"> Об игре</a></p>
+                        <p><a asp-controller="Locations" asp-action="Index"> Локации</a></p>
+                    </dd>
+                    <dt class="col-sm-3">Неигровые персонажи:</dt>
+                    <dd class="col-sm-9">
+                        <p><a asp-controller="Characters" asp-action="Index"> Персонажи</a></p>
+                        <p><a asp-controller="Enemies" asp-action="Index"> Противники</a></p>
+                        <p><a asp-controller="NPC_location" asp-action="Index"> Местонахождение</a></p>
+                    </dd>
+                    <dt class="col-sm-3">Снаряжение:</dt>
+                    <dd class="col-sm-9">
+                        <p><a asp-controller="Armors" asp-action="Index"> Броня</a></p>
+                        <p><a asp-controller="Weapons" asp-action="Index"> Оружие</a></p>
+                    </dd>
+                    <dt class="col-sm-3">Магия:</dt>
+                    <dd class="col-sm-9">
+                        <p><a asp-controller="Type_of_magic" asp-action="Index"> Типы магии</a></p>
+                        <p><a asp-controller="Magics" asp-action="Index"> Заклинания</a></p>
+                        <p><a asp-controller="Catalysts" asp-action="Index"> Катализаторы</a></p>
+                        <p><a asp-controller="Sale_magic" asp-action="Index"> Покупка заклинаний</a></p>
+                    </dd>
+                    <dt class="col-sm-3">Улучшения:</dt>
+                    <dd class="col-sm-9">
+                        <p><a asp-controller="Character_characteristic" asp-action="Index"> Характеристики персонажа</a></p>
+                        <p><a asp-controller="Improvement_path" asp-action="Index"> Пути улучшения</a></p>
+                        <p><a asp-controller="Gem_Location" asp-action="Index"> Местонахождение самоцветов</a></p>
+                    </dd>
+                    @if (User.IsInRole("admin") || User.IsInRole("moderator"))
+                    {
+                        <dt class="col-sm-3 text-danger">Администрация:</dt>
 
-
-           </table>-->
-
-        <h4>Dark souls III - Wiki</h4>
-        <!--<dl class="row">
-            <dt class="col-sm-2">
-                Общая информация:
-            </dt>
-            <dd class="col-6 col-sm-10">
-                <a asp-controller="Game_info" asp-action="Index"> Об игре </a>
-                <a asp-controller="Locations" asp-action="Index"> Локации </a>
-            </dd>
-            <dt class="col-sm-2">
-                Неигровые персонажи:
-            </dt>
-            <dd class="col-sm-10">
-                <a asp-controller="Characters" asp-action="Index"> Союзники </a>
-                <a asp-controller="Enemies" asp-action="Index"> Противники </a>
-                <a asp-controller="NPC_location" asp-action="Index"> Местонахождение</a>
-            </dd>
-            <dt class="col-sm-2">
-                Снаряжение:
-            </dt>
-            <dd class="col-sm-10">
-                <a asp-controller="Armors" asp-action="Index"> Броня </a>
-                <a asp-controller="Weapons" asp-action="Index"> Оружие </a>
-            </dd>
-            <dt class="col-sm-2">
-                Магия:
-            </dt>
-            <dd class="col-sm-10">
-                <a asp-controller="Type_of_magic" asp-action="Index"> Типы магии </a>
-                <a asp-controller="Magics" asp-action="Index"> Заклинания </a>
-                <a asp-controller="Catalysts" asp-action="Index"> Катализаторы </a>
-                <a asp-controller="Sale_magic" asp-action="Index"> Покупка заклинаний</a>
-            </dd>
-
-        </dl>-->
-
-       
-        <div class="container">
-            <div class="row g-2">
-                <div class="col-6">
-                    <div class="p-3 border bg-light">Custom column padding</div>
-                </div>
-                <div class="col-6">
-                    <div class="p-3 border bg-light">Custom column padding</div>
-                </div>
-                <div class="col-6">
-                    <div class="p-3 border bg-light">Custom column padding</div>
-                </div>
-                <div class="col-6">
-                    <div class="p-3 border bg-light">Custom column padding</div>
-                </div>
+                        @if (User.IsInRole("admin"))
+                        {
+                            <dd class="col-sm-9">
+                                <p> <a asp-controller="Roles" asp-action="Index"> Роли</a></p>
+                                <p> <a asp-controller="Users" asp-action="Index"> Пользователи</a></p>
+                            </dd>
+                        }
+                        else
+                        {
+                            <dd class="col-sm-9">
+                                <p> <a asp-controller="Users" asp-action="Index"> Пользователи</a></p>
+                            </dd>
+                        }
+                    }
+                </dl>
             </div>
-        </div>
-    }
-    else
-    {
-        <h4>Зарегистрируйтесь для просмотра</h4>
-    }
+            <div class="card-group">
+                <div class="card">
+                    <img src="~/img/info.png" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">Заголовок карточки</h5>
+                        <p class="card-text">Это более широкая карточка с вспомогательным текстом ниже в качестве естественного перехода к дополнительному контенту. Этот контент немного длиннее.</p>
+                        <p class="card-text"><small class="text-muted">Последнее обновление 3 мин. назад</small></p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="~/img/characters.png" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">Заголовок карточки</h5>
+                        <p class="card-text">Это более широкая карточка с вспомогательным текстом ниже в качестве естественного перехода к дополнительному контенту. Этот контент немного длиннее.</p>
+                        <p class="card-text"><small class="text-muted">Последнее обновление 3 мин. назад</small></p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="~/img/armor.png" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">Заголовок карточки</h5>
+                        <p class="card-text">Это более широкая карта С вспомогательным текстом ниже в качестве естественного перехода к дополнительному контенту. Эта карточка имеет даже более длинный контент, чем первая, чтобы показать действие одинаковой высоты.</p>
+                        <p class="card-text"><small class="text-muted">Последнее обновление 3 мин. назад</small></p>
+                    </div>
+                </div>
 
+            </div>
+            <div class="card-group">
+                <div class="card">
+                    <img src="~/img/magic.png" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">Заголовок карточки</h5>
+                        <p class="card-text">Это более широкая карточка с вспомогательным текстом ниже в качестве естественного перехода к дополнительному контенту. Этот контент немного длиннее.</p>
+                        <p class="card-text"><small class="text-muted">Последнее обновление 3 мин. назад</small></p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="~/img/gems.png" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">Заголовок карточки</h5>
+                        <p class="card-text">Эта подсказка имеет вспомогательный текст ниже, как естественный ввод к дополнительному контенту.</p>
+                        <p class="card-text"><small class="text-muted">Последнее обновление 3 мин. назад</small></p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="~/img/administration.png" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">Заголовок карточки</h5>
+                        <p class="card-text">Это более широкая карта С вспомогательным текстом ниже в качестве естественного перехода к дополнительному контенту. Эта карточка имеет даже более длинный контент, чем первая, чтобы показать действие одинаковой высоты.</p>
+                        <p class="card-text"><small class="text-muted">Последнее обновление 3 мин. назад</small></p>
+                    </div>
+                </div>
+
+            </div>
+
+        }
+        else
+        {
+            <h4>Зарегистрируйтесь для просмотра</h4>
+        }
+    </div>
 </div>
