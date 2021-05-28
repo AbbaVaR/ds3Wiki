@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0srbp1YsE4mbGN8XCZBMObTxnq0G2ji9ZALIKqxHtR/r0ybsM/5EK2RP0KIE24/ZzTm7udfK/3qd/RcLMWxENA==",
+  "dgSpecHash": "lwJfCBONoiIsQb8WG4cDYc8sWJ8lJ2lO574F1FxTY/Rglxv//Nuj6itVWmpOH+dVpyVY+lVRcZc2xPX8aiuZsg==",
   "success": true,
-  "projectFilePath": "D:\\Edu\\ds3Wiki\\ds3Wiki.csproj",
+  "projectFilePath": "C:\\Edu\\ds3Wiki\\ds3Wiki.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\asr77\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\asr77\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.6\\microsoft.aspnetcore.cryptography.internal.5.0.6.nupkg.sha512",

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Edu\\ds3Wiki\\ds3Wiki.csproj": {}
+    "C:\\Edu\\ds3Wiki\\ds3Wiki.csproj": {}
   },
   "projects": {
-    "D:\\Edu\\ds3Wiki\\ds3Wiki.csproj": {
+    "C:\\Edu\\ds3Wiki\\ds3Wiki.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Edu\\ds3Wiki\\ds3Wiki.csproj",
+        "projectUniqueName": "C:\\Edu\\ds3Wiki\\ds3Wiki.csproj",
         "projectName": "ds3Wiki",
-        "projectPath": "D:\\Edu\\ds3Wiki\\ds3Wiki.csproj",
+        "projectPath": "C:\\Edu\\ds3Wiki\\ds3Wiki.csproj",
         "packagesPath": "C:\\Users\\asr77\\.nuget\\packages\\",
-        "outputPath": "D:\\Edu\\ds3Wiki\\obj\\",
+        "outputPath": "C:\\Edu\\ds3Wiki\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\asr77\\AppData\\Roaming\\NuGet\\NuGet.Config",
