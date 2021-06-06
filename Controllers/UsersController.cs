@@ -54,7 +54,7 @@ namespace ds3Wiki.Controllers
                 return NotFound();
             }
             EditUserViewModel model = new EditUserViewModel { Id = user.Id, Email = user.Email };
-            if (user != await _userManager.FindByNameAsync("admin@test.me"))
+            if (user != await _userManager.FindByNameAsync("admin@test.me") && id == _userManager.GetUserId(User))
             {
                 return View(model);
             }
@@ -94,7 +94,7 @@ namespace ds3Wiki.Controllers
         public async Task<ActionResult> Delete(string id)
         {
             User user = await _userManager.FindByIdAsync(id);
-            if (user != null && user != await _userManager.FindByNameAsync("admin@test.me"))
+            if (user != null && id != _userManager.GetUserId(User))
             {
                 IdentityResult result = await _userManager.DeleteAsync(user);
             }
@@ -103,7 +103,7 @@ namespace ds3Wiki.Controllers
         public async Task<IActionResult> ChangePassword(string id)
         {
             User user = await _userManager.FindByIdAsync(id);
-            if (user == null)
+            if (user == null && id != _userManager.GetUserId(User))
             {
                 return NotFound();
             }

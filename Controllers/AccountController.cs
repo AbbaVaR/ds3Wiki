@@ -32,6 +32,7 @@ namespace ds3Wiki.Controllers
                 if (result.Succeeded)
                 {
                     // установка куки
+                    await _userManager.AddToRoleAsync(user, "user");
                     await _signInManager.SignInAsync(user, false);
                     return RedirectToAction("Index", "Home");
                 }

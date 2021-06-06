@@ -1064,3 +1064,5 @@ C:\Edu\ds3Wiki\obj\Debug\net5.0\ds3Wiki.dll
 C:\Edu\ds3Wiki\obj\Debug\net5.0\ref\ds3Wiki.dll
 C:\Edu\ds3Wiki\obj\Debug\net5.0\ds3Wiki.pdb
 C:\Edu\ds3Wiki\obj\Debug\net5.0\ds3Wiki.genruntimeconfig.cache
+C:\Edu\ds3Wiki\bin\Debug\net5.0\Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll
+C:\Edu\ds3Wiki\obj\Debug\net5.0\Razor\Views\Home\Error.cshtml.g.cs
