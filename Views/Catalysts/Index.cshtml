@@ -4,56 +4,63 @@
     ViewData["Title"] = "Catalyst";
 }
 
-<h1>Catalyst</h1>
+<h1>Катализаторы</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table  class="table table-secondary table-striped table-hover">
-    <thead>
+<table class="table table-bordered table-light table-striped table-hover">
+    <thead class="table-dark">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                Название
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Type_of_catalyst)
+                Тип катализатора
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Spell_Buff)
+                Усиление магии
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Type_of_magic)
+                Тип магии
             </th>
+            <th></th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Type_of_catalyst)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Spell_Buff)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Type_of_magic.Title)
-            </td>
-            <td>
-                @if (User.IsInRole("admin") || User.IsInRole("moderator"))
-                {
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                }
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a>
-                @if (User.IsInRole("admin"))
-                {
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                }
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type_of_catalyst)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Spell_Buff)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type_of_magic.Title)
+                </td>
+                <td>
+                    @if (User.IsInRole("admin") || User.IsInRole("moderator"))
+                    {
+                        <a class="btn btn-dark" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                    }
+                    <a class="btn btn-dark" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                </td>
+                <td>
+                    @if (User.IsInRole("admin"))
+                    {
+                        <a class="btn-close" asp-action="Delete" asp-route-id="@item.Id"></a>
+                    }
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+@if (User.IsInRole("admin") || User.IsInRole("moderator"))
+{
+    <p>
+        <a class="btn btn-dark" asp-action="Create">Создать</a>
+    </p>
+}

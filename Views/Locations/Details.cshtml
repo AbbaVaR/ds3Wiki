@@ -4,36 +4,35 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>Детали</h1>
 
 <div>
-    <h4>Location</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Title)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Title)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Bonfire)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Bonfire)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Game_Info)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Game_Info.Name_of_game)
         </dd>
     </dl>
 </div>
 <div>
+    <a class="btn btn-dark" asp-action="Index">Вернуться</a>
     @if (User.IsInRole("admin") || User.IsInRole("moderator"))
     {
-        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> 
+        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Изменить</a>
     }
-    <a asp-action="Index">Back to List</a>
 </div>

@@ -4,39 +4,40 @@
     ViewData["Title"] = "Armors";
 }
 
-<h1>Armors</h1>
+<h1>Броня</h1>
 
-<table class="table table-light table-striped table-hover">
-    <thead>
+<table class="table table-bordered table-light table-striped table-hover">
+    <thead  class="table-dark">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                Название:
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Physical_protection)
+                Физическая защита:
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Fire_protection)
+                Огненная защита:
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Lightning_protection)
+                Защита от молнии:
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Magic_protection)
+                Магическая защита:
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Location)
+                Локация:
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Character)
+                Персонаж:
             </th>
+            <th></th>
             <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr class="rounded-pill">
+            <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Title)
                 </td>
@@ -61,12 +62,15 @@
                 <td>
                     @if (User.IsInRole("admin") || User.IsInRole("moderator"))
                     {
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        <a  class="btn btn-dark" asp-action="Edit" asp-route-id="@item.Id">Изменить</a>
                     }
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    <a class="btn btn-dark" asp-action="Details" asp-route-id="@item.Id">Детали</a>
+                    
+                </td>
+                <td>
                     @if (User.IsInRole("admin"))
                     {
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        <a class="btn-close" asp-action="Delete" asp-route-id="@item.Id"></a>
                     }
                 </td>
             </tr>
@@ -76,6 +80,6 @@
 @if (User.IsInRole("admin") || User.IsInRole("moderator"))
 {
     <p>
-        <a asp-action="Create">Create New</a>
+        <a class="btn btn-dark" asp-action="Create">Создать</a>
     </p>
 }
