@@ -5,7 +5,7 @@
 }
 
 <h1>Броня</h1>
-
+<!--
 <table class="table table-bordered table-light table-striped table-hover">
     <thead  class="table-dark">
         <tr>
@@ -65,7 +65,7 @@
                         <a  class="btn btn-dark" asp-action="Edit" asp-route-id="@item.Id">Изменить</a>
                     }
                     <a class="btn btn-dark" asp-action="Details" asp-route-id="@item.Id">Детали</a>
-                    
+
                 </td>
                 <td>
                     @if (User.IsInRole("admin"))
@@ -76,10 +76,24 @@
             </tr>
         }
     </tbody>
-</table>
+</table> -->
 @if (User.IsInRole("admin") || User.IsInRole("moderator"))
 {
     <p>
         <a class="btn btn-dark" asp-action="Create">Создать</a>
     </p>
 }
+
+<div class="container text-center">
+
+    <div class="nav nav-pills">
+
+        @foreach (var item in Model)
+        {
+
+            <div class="col-sm-2">
+                <a class="nav-link active" asp-action="Details" asp-route-id="@item.Id"> @Html.DisplayFor(modelItem => item.Title)</a>
+            </div>
+        }
+    </div>
+</div>
