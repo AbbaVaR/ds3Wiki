@@ -4,42 +4,14 @@
     ViewData["Title"] = "Delete";
 }
 
-<h1>Удаление</h1>
-
-<h3>вы уверены?</h3>
-<div>
-    <h4>Enemy</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Types)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Types)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.HP)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.HP)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Received_money)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Received_money)
-        </dd>
-    </dl>
-
+<div class="text-center">
+    <h1>
+        @Html.DisplayFor(model => model.Name)
+    </h1>
+    <h3>Вы уверены, что хотите удалить запись?</h3>
     <form asp-action="Delete">
-        <a class="btn btn-dark" asp-action="Index">Вернуться</a>
+        <a class="btn btn-outline-info" asp-action="Index">Вернуться</a>
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Удалить" class="btn btn-danger" />
+        <input type="submit" value="Удалить" class="btn btn-outline-danger" />
     </form>
 </div>

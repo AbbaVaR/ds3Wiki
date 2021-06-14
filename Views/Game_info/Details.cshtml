@@ -4,36 +4,40 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Детали</h1>
-
-<div>
-    <h4>Об игре</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Name_of_game)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Name_of_game)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Developer)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Developer)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Genre)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Genre)
-        </dd>
-    </dl>
+<h1 class="text-center">
+    @Html.DisplayFor(model => model.Name_of_game)
+</h1>
+<div class="row align-items-center justify-content-evenly">
+    <div class="col-4">
+        <ul class="list-group list-group-horizontal">
+            <li class="list-group-item list-group-item-info rounded-pill">
+                Разработчик:
+            </li>
+            <li class="list-group-item border-0">
+                @Html.DisplayFor(model => model.Developer)
+            </li>
+        </ul>
+        <ul class="list-group list-group-horizontal mt-2">
+            <li class="list-group-item list-group-item-info rounded-pill">
+                Жанр:
+            </li>
+            <li class="list-group-item border-0">
+                @Html.DisplayFor(model => model.Genre)
+            </li>
+        </ul>
+    </div>
+    <div class="col-4">
+        <img src="~/img/info.png">
+    </div>
 </div>
-<div>
-    <a class="btn btn-dark" asp-action="Index">Вернуться</a>
+<div class="mx-auto" style="width: 300px">
+    <a class="btn btn-outline-info" asp-action="Index">Вернуться</a>
     @if (User.IsInRole("admin") || User.IsInRole("moderator"))
     {
-        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Изменить</a>
+        <a class="btn btn-outline-info" asp-action="Edit" asp-route-id="@Model.Id">Изменить</a>
+    }
+    @if (User.IsInRole("admin"))
+    {
+        <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@Model.Id">Удалить</a>
     }
 </div>

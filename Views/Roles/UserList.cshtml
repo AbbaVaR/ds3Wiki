@@ -9,7 +9,7 @@
             <td>
                 @if (@user.Email != "admin@test.me" && @user.Email != @User.Identity.Name)
                 {
-                    <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-userid="@user.Id">Права доступа</a>
+                    <a class="btn btn-outline-info" asp-action="Edit" asp-route-userid="@user.Id">Права доступа</a>
                 }
             </td>
         </tr>

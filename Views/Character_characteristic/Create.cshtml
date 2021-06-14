@@ -4,26 +4,24 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Создать</h1>
-
-<h4>Характеристики персонажа</h4>
+<h1 class="text-center">Создать</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
+                <label asp-for="Title" class="control-label">Название:</label>
                 <input asp-for="Title" class="form-control" />
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Influence" class="control-label"></label>
+                <label asp-for="Influence" class="control-label">Влияние:</label>
                 <input asp-for="Influence" class="form-control" />
                 <span asp-validation-for="Influence" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <a class="btn btn-dark" asp-action="Index">Вернуться</a> <input type="submit" value="Создать" class="btn btn-primary" />
+                <a class="btn btn-outline-danger mt-3" asp-action="Index">Отмена</a> <input type="submit" value="Сохранить" class="btn btn-outline-success mt-3" />
             </div>
         </form>
     </div>

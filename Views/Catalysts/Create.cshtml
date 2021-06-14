@@ -4,35 +4,34 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Создать</h1>
+<h1 class="text-center">Создать</h1>
 
-<h4>Катализатор</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
+                <label asp-for="Title" class="control-label">Название:</label>
                 <input asp-for="Title" class="form-control" />
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Type_of_catalyst" class="control-label"></label>
+                <label asp-for="Type_of_catalyst" class="control-label">Тип катализатора</label>
                 <input asp-for="Type_of_catalyst" class="form-control" />
                 <span asp-validation-for="Type_of_catalyst" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Spell_Buff" class="control-label"></label>
+                <label asp-for="Spell_Buff" class="control-label">Бонус к магии:</label>
                 <input asp-for="Spell_Buff" class="form-control" />
                 <span asp-validation-for="Spell_Buff" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Type_of_magicId" class="control-label"></label>
+                <label asp-for="Type_of_magicId" class="control-label">Id типа магии</label>
                 <select asp-for="Type_of_magicId" class="form-control" asp-items="ViewBag.Type_of_magicId"></select>
             </div>
             <div class="form-group">
-                <a class="btn btn-dark" asp-action="Index">Вернуться</a> <input type="submit" value="Создать" class="btn btn-primary" />
+                <a class="btn btn-outline-danger mt-3" asp-action="Index">Отмена</a> <input type="submit" value="Сохранить" class="btn btn-outline-success mt-3" />
             </div>
         </form>
     </div>

@@ -4,41 +4,48 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Детали</h1>
-
-<div>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Type_of_magic)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Type_of_magic.Title)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Concentration_costs)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Concentration_costs)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Occupied_cells)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Occupied_cells)
-        </dd>
-    </dl>
+<h1 class="text-center">
+    @Html.DisplayFor(model => model.Title)
+</h1>
+<div class="row align-items-center justify-content-evenly">
+    <div class="col-4">
+        <ul class="list-group list-group-horizontal">
+            <li class="list-group-item list-group-item-info rounded-pill">
+                Тип магии:
+            </li>
+            <li class="list-group-item border-0">
+                @Html.DisplayFor(model => model.Type_of_magic.Title)
+            </li>
+        </ul>
+        <ul class="list-group list-group-horizontal mt-2">
+            <li class="list-group-item list-group-item-info rounded-pill">
+               Затрты концентрации:
+            </li>
+            <li class="list-group-item border-0">
+                @Html.DisplayFor(model => model.Concentration_costs)
+            </li>
+        </ul>
+        <ul class="list-group list-group-horizontal mt-2">
+            <li class="list-group-item list-group-item-info rounded-pill">
+                Занимаемые ячейки:
+            </li>
+            <li class="list-group-item border-0">
+                @Html.DisplayFor(model => model.Occupied_cells)
+            </li>
+        </ul>
+    </div>
+    <div class="col-4">
+        <img src="~/img/magic.png">
+    </div>
 </div>
-<div>
-    <a class="btn btn-dark" asp-action="Index">Вернуться</a>
+<div class="mx-auto" style="width: 300px">
+    <a class="btn btn-outline-info" asp-action="Index">Вернуться</a>
     @if (User.IsInRole("admin") || User.IsInRole("moderator"))
     {
-        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Изменить</a>
+        <a class="btn btn-outline-info" asp-action="Edit" asp-route-id="@Model.Id">Изменить</a>
+    }
+    @if (User.IsInRole("admin"))
+    {
+        <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@Model.Id">Удалить</a>
     }
 </div>

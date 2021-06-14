@@ -1,99 +1,30 @@
 ﻿@model IEnumerable<ds3Wiki.Models.Armor>
 
 @{
-    ViewData["Title"] = "Armors";
+    ViewData["Title"] = "Броня";
 }
 
-<h1>Броня</h1>
-<!--
-<table class="table table-bordered table-light table-striped table-hover">
-    <thead  class="table-dark">
-        <tr>
-            <th>
-                Название:
-            </th>
-            <th>
-                Физическая защита:
-            </th>
-            <th>
-                Огненная защита:
-            </th>
-            <th>
-                Защита от молнии:
-            </th>
-            <th>
-                Магическая защита:
-            </th>
-            <th>
-                Локация:
-            </th>
-            <th>
-                Персонаж:
-            </th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Physical_protection)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Fire_protection)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Lightning_protection)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Magic_protection)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Location.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Character.Name)
-                </td>
-                <td>
-                    @if (User.IsInRole("admin") || User.IsInRole("moderator"))
-                    {
-                        <a  class="btn btn-dark" asp-action="Edit" asp-route-id="@item.Id">Изменить</a>
-                    }
-                    <a class="btn btn-dark" asp-action="Details" asp-route-id="@item.Id">Детали</a>
-
-                </td>
-                <td>
-                    @if (User.IsInRole("admin"))
-                    {
-                        <a class="btn-close" asp-action="Delete" asp-route-id="@item.Id"></a>
-                    }
-                </td>
-            </tr>
-        }
-    </tbody>
-</table> -->
+<div class="text-center container-fluid">
+    <div class="text-center">
+        <img src="~/img/logo.png" class="img-fluid">
+        <h1 class="text-secondary display-4">броня</h1>
+    </div>
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-sm-3">
+                    <a class="text-wrap list-group-item list-group-item-action list-group-item-info rounded-pill mt-3"  asp-action="Details" asp-route-id="@item.Id"> 
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
 @if (User.IsInRole("admin") || User.IsInRole("moderator"))
 {
     <p>
-        <a class="btn btn-dark" asp-action="Create">Создать</a>
+        <a class="btn btn-outline-info d-flex justify-content-center rounded-pill" style="margin: 30px;" asp-action="Create">Создать</a>
     </p>
 }
-
-<div class="container text-center">
-
-    <div class="nav nav-pills">
-
-        @foreach (var item in Model)
-        {
-
-            <div class="col-sm-2">
-                <a class="nav-link active" asp-action="Details" asp-route-id="@item.Id"> @Html.DisplayFor(modelItem => item.Title)</a>
-            </div>
-        }
-    </div>
-</div>

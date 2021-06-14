@@ -4,7 +4,7 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Изменить</h1>
+<h1 class="text-center">Изменить</h1>
 
 <hr />
 <div class="row">
@@ -13,29 +13,25 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="Gem_name" class="control-label"></label>
+                <label asp-for="Gem_name" class="control-label">Название</label>
                 <input asp-for="Gem_name" class="form-control" />
                 <span asp-validation-for="Gem_name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Advantages" class="control-label"></label>
+                <label asp-for="Advantages" class="control-label">Плюсы</label>
                 <input asp-for="Advantages" class="form-control" />
                 <span asp-validation-for="Advantages" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Disadvantage" class="control-label"></label>
+                <label asp-for="Disadvantage" class="control-label">Минусы</label>
                 <input asp-for="Disadvantage" class="form-control" />
                 <span asp-validation-for="Disadvantage" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <a class="btn btn-outline-danger mt-3" asp-action="Index">Отмена</a> <input type="submit" value="Сохранить" class="btn btn-outline-success mt-3" />
             </div>
         </form>
     </div>
-</div>
-
-<div class="form-group">
-    <a class="btn btn-dark" asp-action="Index">Вернуться</a> <input type="submit" value="Сохранить" class="btn btn-primary" />
 </div>
 
 @section Scripts {

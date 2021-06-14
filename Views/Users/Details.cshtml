@@ -24,12 +24,8 @@
 <div>
     @if (@User.Identity.Name != "admin@test.me")
     {
-        <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@User.FindFirstValue(ClaimTypes.NameIdentifier)">Сменить email</a>
+        <a class="btn btn-sm btn-outline-info" asp-action="Edit" asp-route-id="@User.FindFirstValue(ClaimTypes.NameIdentifier)">Сменить email</a>
     }
-    <a class="btn btn-sm btn-primary" asp-action="ChangePassword" asp-route-id="@User.FindFirstValue(ClaimTypes.NameIdentifier)">Сменить пароль</a>
-    @if (User.IsInRole("admin") || User.IsInRole("moderator"))
-    {
-        <a class="btn btn-sm btn-primary" asp-action="Index">Список пользователей</a>
-    }
+    <a class="btn btn-sm btn-outline-info" asp-action="ChangePassword" asp-route-id="@User.FindFirstValue(ClaimTypes.NameIdentifier)">Сменить пароль</a>
 
 </div>

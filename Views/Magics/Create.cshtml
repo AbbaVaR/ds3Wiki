@@ -4,7 +4,7 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Создать</h1>
+<h1 class="text-center">Создать</h1>
 
 <hr />
 <div class="row">
@@ -12,26 +12,26 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
+                <label asp-for="Title" class="control-label">Название</label>
                 <input asp-for="Title" class="form-control" />
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Type_of_magicId" class="control-label"></label>
-                <select asp-for="Type_of_magicId" class ="form-control" asp-items="ViewBag.Type_of_magicId"></select>
+                <label asp-for="Type_of_magicId" class="control-label">Id типа магии</label>
+                <select asp-for="Type_of_magicId" class="form-control" asp-items="ViewBag.Type_of_magicId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="Concentration_costs" class="control-label"></label>
+                <label asp-for="Concentration_costs" class="control-label">Затраты концентрации</label>
                 <input asp-for="Concentration_costs" class="form-control" />
                 <span asp-validation-for="Concentration_costs" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Occupied_cells" class="control-label"></label>
+                <label asp-for="Occupied_cells" class="control-label">Занимаемые ячейки</label>
                 <input asp-for="Occupied_cells" class="form-control" />
                 <span asp-validation-for="Occupied_cells" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <a class="btn btn-dark" asp-action="Index">Вернуться</a> <input type="submit" value="Создать" class="btn btn-primary" />
+                <a class="btn btn-outline-danger mt-3" asp-action="Index">Отмена</a> <input type="submit" value="Сохранить" class="btn btn-outline-success mt-3" />
             </div>
         </form>
     </div>

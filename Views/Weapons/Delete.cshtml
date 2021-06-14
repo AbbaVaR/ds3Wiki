@@ -4,66 +4,14 @@
     ViewData["Title"] = "Delete";
 }
 
-<h1>Удаление</h1>
-
-<h3>вы уверены?</h3>
-<div>
-    <h4>Weapon</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Types)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Types)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Damage)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Damage)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Distance)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Distance)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Support_for_improvement)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Support_for_improvement)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Location)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Location.Id)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Character)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Character.Id)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Character_characteristic)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Character_characteristic.Id)
-        </dd>
-    </dl>
-
+<div class="text-center">
+    <h1>
+        @Html.DisplayFor(model => model.Title)
+    </h1>
+    <h3>Вы уверены, что хотите удалить запись?</h3>
     <form asp-action="Delete">
-        <a class="btn btn-dark" asp-action="Index">Вернуться</a>
+        <a class="btn btn-outline-info" asp-action="Index">Вернуться</a>
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Удалить" class="btn btn-danger" />
+        <input type="submit" value="Удалить" class="btn btn-outline-danger" />
     </form>
 </div>

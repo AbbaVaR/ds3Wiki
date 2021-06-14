@@ -4,7 +4,7 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Изменить</h1>
+<h1 class="text-center">Изменить</h1>
 
 <hr />
 <div class="row">
@@ -13,27 +13,27 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
+                <label asp-for="Name" class="control-label">Имя</label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Types" class="control-label"></label>
+                <label asp-for="Types" class="control-label">Тип</label>
                 <input asp-for="Types" class="form-control" />
                 <span asp-validation-for="Types" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="HP" class="control-label"></label>
+                <label asp-for="HP" class="control-label">Очки здоровья</label>
                 <input asp-for="HP" class="form-control" />
                 <span asp-validation-for="HP" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Received_money" class="control-label"></label>
+                <label asp-for="Received_money" class="control-label">Получаемые деньги</label>
                 <input asp-for="Received_money" class="form-control" />
                 <span asp-validation-for="Received_money" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <a class="btn btn-dark" asp-action="Index">Вернуться</a> <input type="submit" value="Сохранить" class="btn btn-primary" />
+                <a class="btn btn-outline-danger mt-3" asp-action="Index">Отмена</a> <input type="submit" value="Сохранить" class="btn btn-outline-success mt-3" />
             </div>
         </form>
     </div>
