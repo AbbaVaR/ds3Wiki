@@ -3,15 +3,9 @@
     ViewBag.Title = "Список пользователей";
 }
 
+<h2>Список пользователей</h2>
+
 <table class="table table-bordered table-light table-hover">
-    <thead class="table-info">
-        <tr>
-            <th>
-                Email
-            </th>
-            <th></th>
-        </tr>
-    </thead>
     <tbody>
         @foreach (var user in Model)
         {
@@ -36,5 +30,5 @@
 </table>
 @if (User.IsInRole("admin"))
 {
-    <a  class="btn btn-outline-info" asp-action="Create">Добавить пользователя</a>
+    <a class="btn btn-outline-info" asp-action="Create">Добавить пользователя</a>
 }
